@@ -1,0 +1,3 @@
+/home/hmwbte/Projects/libs/sticky/build/CMakeFiles/sticky.dir
+/home/hmwbte/Projects/libs/sticky/build/CMakeFiles/edit_cache.dir
+/home/hmwbte/Projects/libs/sticky/build/CMakeFiles/rebuild_cache.dir

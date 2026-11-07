@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsticky.a CMakeFiles/sticky.dir/src/sticky.cpp.o
+/usr/bin/ranlib libsticky.a
