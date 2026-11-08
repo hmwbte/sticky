@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <vector>
 #define _HMW_DEBUG 1
-#include "../src/sticky.hpp"
+#include "../include/sticky.hpp"
 
 
 class A : public hmw::sticky::object {
