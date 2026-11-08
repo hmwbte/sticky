@@ -6,7 +6,7 @@ Sticky pointers also try to eliminate use-after-free situations, by nullifying i
 
 ## Usage
 
-To include this library in your project, simply copy the contents of `./src/` and add `sticky.cpp` to your compile instructions.  C++ 20 is required, because I'm using new-ish template stuffs.
+Same as any other library; header is in `./include` and static library shows up in `./build`
 
 The provided code below is only an example; it does not work on its own, and does not provide implementations.  This just shows how you can use a sticky pointer to an object & never worry about it invalidating before the object is destroyed.
 
