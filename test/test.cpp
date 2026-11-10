@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <vector>
 #define _HMW_DEBUG 1
-#include "../include/sticky.hpp"
+#include <hmw/sticky.hpp>
 
 
 class A : public hmw::sticky::object {
@@ -65,6 +65,17 @@ class E : public D, public A {
     };
     virtual void tell () override {
       printf ("[E::tell] foo is %i; bar is %i; wib is %i; can is %i\n", foo, bar, wib, can);
+    };
+};
+
+class F : public C {
+  public:
+    int tor = 99;
+
+    F (int f, int b, int l) : C(f, b, l) {};
+
+    virtual void tell () override {
+      printf ("[F::tell] foo is %i; bar is %i; lux is %i; tor is always 99.\n", foo, bar, lux);
     };
 };
 
@@ -292,6 +303,29 @@ int main () {
       printf ("\n >>> TEST 7 : %s\n\n", success ? "passed" : "failed");
     } catch (std::exception e) {
       printf ("\n\nTEST 7 : exception!\n%s\n", e.what());
+    }
+
+    // Ensure class based on another class based on sticky::object isn't excluded needlessly
+    try {
+      printf ("\n\nTEST 8 : multiple derivisions work\n================================\n\n");
+
+      success = true;
+
+      F my_F (81, 82, 83);
+
+      hmw::sticky::pointer<F> my_ptr_to_F(my_F);
+
+      success = !!my_ptr_to_F;
+
+      if (success) {
+        my_ptr_to_F->tell ();
+      } else {
+        printf ("Pointer to F resolution failed!\n");
+      }
+
+      printf ("\n >>> TEST 8 : %s\n\n", success ? "passed" : "failed");
+    } catch (std::exception e) {
+      printf ("\n\nTEST 8 : exception!\n%s\n", e.what());
     }
 
 };

@@ -1,4 +1,11 @@
 cmake_minimum_required(VERSION 3.10)
-project(sticky)
+project(STICKY)
 set(CMAKE_CXX_STANDARD 20)
-add_library(sticky STATIC ./src/sticky.cpp)
+
+option(HMW_STICKY_BUILD_TESTS "Build the test program" ON)
+
+add_library (sticky STATIC src/sticky.cpp)
+
+if (HMW_STICKY_BUILD_TESTS)
+  add_subdirectory(test)
+endif()
