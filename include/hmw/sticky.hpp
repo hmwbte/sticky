@@ -1,5 +1,5 @@
 #pragma once
-#include <concepts>
+#include <type_traits>
 #include <stdexcept>
 
 #ifdef _HMW_DEBUG
@@ -12,8 +12,13 @@
 
 namespace hmw {
   namespace sticky {
+
     class object;
-    template <typename T> requires std::derived_from<T, object> class pointer;
+
+    template <typename T>
+    concept valid_for_pointer = std::is_base_of_v<object, T>;
+
+    template <typename T> requires valid_for_pointer<T> class pointer;
 
     /**
      * Implementation details of sticky's tag system.  The code behind
@@ -39,7 +44,7 @@ namespace hmw {
      */
     class object {
 
-      template <typename T> requires std::derived_from<T, object> friend class pointer;
+      template <typename T> requires valid_for_pointer<T> friend class pointer;
 
       private:
         _Impl::tag* tag;
@@ -111,10 +116,10 @@ namespace hmw {
      * sticky-related is virtual/polymorphic, the pointer type does not have
      * to be the exact type of the pointed-to object; it may be a base type.
      */
-    template <typename T> requires std::derived_from<T, object>
+    template <typename T> requires valid_for_pointer<T>
     class pointer {
 
-      template <typename U> requires std::derived_from<U, object>
+      template <typename U> requires valid_for_pointer<U>
       friend class pointer;
 
       private:

@@ -1,6 +1,6 @@
 #include <vector>
 #include <deque>
-#include "../include/sticky.hpp"
+#include "../include/hmw/sticky.hpp"
 
 typedef hmw::sticky::_Impl::tag _tag_t;
 typedef hmw::sticky::object _obj_t;
